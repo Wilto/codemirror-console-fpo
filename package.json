@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "js": "esbuild _src/bundle.js --bundle --loader:.ttf=file --outfile=_site/bundle.js",
+    "serve": "ELEVENTY_ENV=development npx eleventy --serve",
+    "start": "npm run serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.2",
+    "codemirror": "^6.0.1",
+    "thememirror": "^2.0.1",
+    "esbuild": "^0.25.2"
+  }
+}

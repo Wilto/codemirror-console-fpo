@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+.console-commands,
+.CodeMirror-linenumbers {
+    background: #ddd;
+}
+.CodeMirror[class*="dark"] + .console-commands,
+.CodeMirror[class*="dark"] .CodeMirror-linenumbers {
+    background: #000;
+}
+
+
+.inline-console {
+    position: relative;
+    font-family: "Azeret Mono", monospace;
+}
+.inline-console pre {
+    overflow: visible;
+    margin: 0;
+}
+.button.copy {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.console-commands {
+    display: flex;
+    padding: .5rem 1rem;
+}
+
+
+output.console {
+    background: ##eae7d9;
+    display: block;
+}
+.log-row {
+    display: flex;
+    color: #4a4944;
+    padding: .325em .5em .25em .5em;
+}
+.log-row+.log-row {
+    border-top: 2px solid #6a6960;
+}
+.log-row::before {
+    content: "";
+    display: block;
+    margin-inline-end: .5rem;
+    width: 1rem;
+}
+.log-row.log-normal {
+}
+.log-row.log-info {
+    background: #c0b496;
+}
+.log-row.log-warn {
+    background: #e3daac;
+}
+.log-warn::before {
+    border: 1px solid yellow;
+}
+.log-row.log-error {
+    background: #e0b7ab;
+    color: #4a4944;
+}
+.log-error::before {
+    border: 1px solid red;
+}
+.log-row.log-return {
+    color: #6a6960;
+}
+.log-row.log-hint {
+    border-top: none;
+    font-style: italic;
+}
+
+.console-wrapper {
+    position: relative;
+}
+.console-wrapper::after,
+.console-wrapper::before {
+    --hitbox: 0;
+    border-width: 0;
+    content: "";
+    position: absolute;
+    border: solid transparent;
+    border-width: 0;
+    height: 6rem;
+    width: 6rem;
+    z-index: 0;
+    box-sizing: border-box;
+}
+@property --hitbox {
+  syntax: '<length>';
+  initial-value: 0;
+  inherits: true;
+}
+@keyframes hit {
+  to { --hitbox: .75rem; }
+}
+.console-wrapper::before {
+    border-width: var(--hitbox) 0 0 var(--hitbox);
+    left: calc( 1px - var(--hitbox, 0) );
+    top: calc( 1px - var(--hitbox, 0) );
+}
+.console-wrapper::after {
+    border-width: 0 var(--hitbox) var(--hitbox) 0;
+    right: calc( 1px - var(--hitbox, 0) );
+    bottom: calc( 1px - var(--hitbox, 0) );
+}
+.wrong-answer .console-wrapper::before,
+.wrong-answer .console-wrapper::after {
+    animation: .35s 2 alternate hit ease-out;
+    border-color: #ed7e79;
+}
+.right-answer .console-wrapper::before,
+.right-answer .console-wrapper::after {
+    animation: .35s 2 alternate hit ease-out;
+    border-color: green;
+}
+
