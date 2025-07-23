@@ -4,9 +4,10 @@ title: test
 <div class="inline-console" data-instance="first">
 
 ```jsx
-console.log( "test" );
+new Boolean( true );
 ```
-
+<button>Run</button>
+<output></output>
 </div>
 
 <script src="./bundle.js" type="module"></script>

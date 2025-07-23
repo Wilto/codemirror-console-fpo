@@ -1,13 +1,19 @@
 {
   "scripts": {
-    "js": "esbuild _src/bundle.js --bundle --loader:.ttf=file --outfile=_site/bundle.js",
+    "js": "node ./esbuild.js",
     "serve": "ELEVENTY_ENV=development npx eleventy --serve",
-    "start": "npm run serve"
+    "start": "concurrently 'npm run serve' 'npm run js -- --watch'"
   },
   "dependencies": {
     "@11ty/eleventy": "^1.0.2",
+    "@codemirror/lang-javascript": "^6.2.4",
+    "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "codemirror": "^6.0.1",
+    "concurrently": "^9.2.0",
+    "esbuild": "^0.25.2",
+    "events": "^3.3.0",
+    "process": "^0.11.10",
     "thememirror": "^2.0.1",
-    "esbuild": "^0.25.2"
+    "util": "^0.12.5"
   }
 }
