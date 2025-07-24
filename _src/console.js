@@ -116,12 +116,14 @@ function printConsole( args, className ) {
 
 export default function() {
   const codeConsoles = document.querySelectorAll( ".inline-console" );
-  const createConsole = ( console, editorView ) => {
+  const createConsole = ( currentConsole, editorView ) => {
     const output   = document.createElement( "output" );
     const controls = document.createElement( "div" );
     const runBtn   = document.createElement( "button" );
     const resetBtn = document.createElement( "button" );
     const clearBtn = document.createElement( "button" );
+
+    controls.append( runBtn );
 
     controls.setAttribute( "role", "menubar" );
 
@@ -144,7 +146,7 @@ export default function() {
         changes: {
           from: 0, 
           to: editorView.state.doc.toString().length, 
-          insert: console.dataset.originalState
+          insert: currentConsole.dataset.originalState
         }
       })
     });
@@ -161,8 +163,18 @@ export default function() {
       })
     });
 
-    console.append( controls );
-    console.append( output );
+    const consoleLabel = document.createElement( "h3" );
+    consoleLabel.innerHTML = "Editor:";
+
+    currentConsole.insertBefore( consoleLabel, currentConsole.querySelector( "pre" ) );
+    editorView.contentDOM.setAttribute( "aria-labelledby", "testing ");
+
+    currentConsole.append( controls );
+
+    const outputLabel = document.createElement( "h3" );
+    outputLabel.innerHTML = "Console:";
+    output.append( outputLabel )
+    currentConsole.append( output );
   };
   const init = ( codeConsole ) => {
     const originalCode = codeConsole.querySelector( "pre" ).textContent.trim().toString();
@@ -188,7 +200,6 @@ export default function() {
     };
 
     createConsole( codeConsole, view );
-
   };
   codeConsoles.forEach( codeConsole => { 
     init( codeConsole );
