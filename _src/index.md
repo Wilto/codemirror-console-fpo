@@ -3,11 +3,12 @@ title: test
 ---
 <div class="inline-console" data-instance="first">
 
+Optional instruction field here to explain the code or task at hand.
+
 ```jsx
 new Boolean( true );
 ```
-<button>Run</button>
-<output></output>
+
 </div>
 
 <script src="./bundle.js" type="module"></script>
